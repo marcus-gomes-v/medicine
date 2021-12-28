@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "917434785477",
+    "project_id": "medicine-40a75",
+    "storage_bucket": "medicine-40a75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917434785477:android:82a0d6953e4d2bf1de5aac",
+        "android_client_info": {
+          "package_name": "com.marcusbego.metacard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917434785477-htjmvod2u0e8amo2f4oneahqeqi5gm6t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfO4KQB8EIqDh0CuWfIuy9Xsc_ynLHeR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917434785477-htjmvod2u0e8amo2f4oneahqeqi5gm6t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
