@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:metacard/providers/google_provider.dart';
 import 'package:metacard/screens/welcome_screen.dart';
-import 'package:metacard/screens/login_screen.dart';
-import 'package:metacard/screens/registration_screen.dart';
-import 'package:metacard/screens/chat_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:metacard/screens/verify_screen.dart';
+import 'package:metacard/screens/authenticated_screen.dart';
 
 void main() async {
   // Ensure that Firebase is initialized
@@ -11,20 +12,23 @@ void main() async {
   // Initialize Firebase
   await Firebase.initializeApp();
 
-  runApp(FlashChat());
+  runApp(Medicine());
 }
 
-class FlashChat extends StatelessWidget {
+class Medicine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: WelcomeScreen.id,
-      routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen(),
-        ChatScreen.id: (context) => ChatScreen(),
-      },
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        theme: ThemeData.dark(),
+        initialRoute: VerifyScreen.id,
+        routes: {
+          VerifyScreen.id: (context) => VerifyScreen(),
+          WelcomeScreen.id: (context) => WelcomeScreen(),
+          AuthenticatedScreen.id: (context) => AuthenticatedScreen(),
+        },
+      ),
     );
   }
 }

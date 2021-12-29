@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'registration_screen.dart';
-import 'login_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:metacard/components/default_button.dart';
+import 'package:metacard/providers/google_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:metacard/screens/verify_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -13,15 +15,15 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation animation;
+  late AnimationController controller;
+  late Animation animation;
 
   Widget typewritterAnimation(String text) {
     return Expanded(
       flex: 5,
       child: DefaultTextStyle(
         style: const TextStyle(
-          fontSize: 50.0,
+          fontSize: 45.0,
           fontWeight: FontWeight.w900,
           color: Colors.blueGrey,
         ),
@@ -72,12 +74,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   child: Hero(
                     tag: 'logo',
                     child: Container(
-                      child: Image.asset('images/logo.png'),
+                      child: const Icon(
+                        Icons.task,
+                        size: 51.0,
+                        color: Colors.black38,
+                      ),
                       height: 60.0,
                     ),
                   ),
                 ),
-                typewritterAnimation('Flat Chat'),
+                typewritterAnimation('Metacard'),
               ],
             ),
             SizedBox(
@@ -85,16 +91,26 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             DefaultButton(
               color: Colors.lightBlueAccent,
-              text: 'Log In',
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.google,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    'Logar com o Google',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
               onPressed: () {
-                Navigator.pushNamed(context, LoginScreen.id);
-              },
-            ),
-            DefaultButton(
-              color: Colors.blueAccent,
-              text: 'Register',
-              onPressed: () {
-                Navigator.pushNamed(context, RegistrationScreen.id);
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.googleLogin();
+                setState(() {});
               },
             ),
           ],
