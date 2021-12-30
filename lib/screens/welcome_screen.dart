@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:metacard/components/default_button.dart';
 import 'package:metacard/providers/google_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:metacard/screens/verify_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -19,24 +18,21 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   late Animation animation;
 
   Widget typewritterAnimation(String text) {
-    return Expanded(
-      flex: 5,
-      child: DefaultTextStyle(
-        style: const TextStyle(
-          fontSize: 45.0,
-          fontWeight: FontWeight.w900,
-          color: Colors.blueGrey,
-        ),
-        child: AnimatedTextKit(
-          pause: Duration(seconds: 3),
-          repeatForever: true,
-          animatedTexts: [
-            TypewriterAnimatedText(
-              text,
-              speed: const Duration(milliseconds: 81),
-            )
-          ],
-        ),
+    return DefaultTextStyle(
+      style: const TextStyle(
+        fontSize: 51.0,
+        fontWeight: FontWeight.w900,
+        color: Colors.teal,
+      ),
+      child: AnimatedTextKit(
+        pause: const Duration(seconds: 3),
+        repeatForever: true,
+        animatedTexts: [
+          TypewriterAnimatedText(
+            text,
+            speed: const Duration(milliseconds: 81),
+          )
+        ],
       ),
     );
   }
@@ -45,9 +41,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: Duration(seconds: 1, milliseconds: 200), vsync: this);
-    animation =
-        ColorTween(begin: Colors.grey, end: Colors.white).animate(controller);
+        duration: const Duration(seconds: 1, milliseconds: 200), vsync: this);
+    animation = ColorTween(begin: Colors.teal.shade200, end: Colors.white)
+        .animate(controller);
     controller.forward();
     controller.addListener(() => setState(() {}));
   }
@@ -69,31 +65,19 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Flexible(
-                  child: Hero(
-                    tag: 'logo',
-                    child: Container(
-                      child: const Icon(
-                        Icons.task,
-                        size: 51.0,
-                        color: Colors.black38,
-                      ),
-                      height: 60.0,
-                    ),
-                  ),
-                ),
-                typewritterAnimation('Metacard'),
+                typewritterAnimation('Medicine'),
               ],
             ),
-            SizedBox(
-              height: 28.0,
+            const SizedBox(
+              height: 18.0,
             ),
             DefaultButton(
-              color: Colors.lightBlueAccent,
+              color: Colors.teal,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: const [
                   FaIcon(
                     FontAwesomeIcons.google,
                     color: Colors.white,

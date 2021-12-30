@@ -17,6 +17,10 @@ class DefaultButton extends StatelessWidget {
         color: this.color,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
+          padding: EdgeInsets.symmetric(
+            horizontal: 40.0,
+            vertical: 10,
+          ),
           onPressed: onPressed,
           minWidth: 200.0,
           height: 42.0,
