@@ -37,7 +37,8 @@ class Medicine extends StatelessWidget {
           MedicalConsultScreen.id: (context) => MedicalConsultScreen(),
           RenewRecipeScreen.id: (context) => RenewRecipeScreen(),
           MedicalHistoryScreen.id: (context) => MedicalHistoryScreen(),
-          PatientInfoScreen.id: (context) => PatientInfoScreen(),
+          PatientInfoScreen.id: (context) =>
+              PatientInfoScreen(addMessage: (String message) => print(message)),
         },
       ),
     );

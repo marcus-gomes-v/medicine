@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:metacard/providers/google_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:metacard/components/default_button.dart';
-import 'package:metacard/screens/patient/smart_service_screen.dart';
 import 'package:metacard/screens/patient/time_service_screen.dart';
 import 'package:metacard/screens/patient/medical_consult_screen.dart';
 import 'package:metacard/screens/patient/renew_recipe_screen.dart';
@@ -22,25 +21,20 @@ class AuthenticatedScreen extends StatefulWidget {
 class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
   @override
   Widget build(BuildContext context) {
-    Patient patient = Patient(
-      name: widget.user.displayName!,
-      avatar: NetworkImage(widget.user.photoURL!),
-    );
+    Patient patient = Patient(user: widget.user);
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.tealAccent,
           onPressed: () {
             print('Some Function');
           },
-          child: Container(
-            child: FaIcon(
-              FontAwesomeIcons.plus,
-              color: Colors.teal,
-            ),
+          child: const FaIcon(
+            FontAwesomeIcons.plus,
+            color: Colors.teal,
           ),
         ),
         appBar: AppBar(
-          title: Text('Medicine'),
+          title: const Text('Medicine'),
           backgroundColor: Colors.teal,
           actions: [
             TextButton(
@@ -49,7 +43,7 @@ class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
                     Provider.of<GoogleSignInProvider>(context, listen: false);
                 provider.googleLogout();
               },
-              child: FaIcon(
+              child: const FaIcon(
                 FontAwesomeIcons.powerOff,
                 color: Color(0x88c0392b),
               ),
@@ -65,38 +59,38 @@ class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
               Center(
                 child: CircleAvatar(
                   radius: 60,
-                  backgroundImage: patient.avatar,
+                  backgroundImage: patient.avatar!,
                   backgroundColor: Colors.teal,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
                 child: Text(
-                  patient.name,
-                  style: TextStyle(
+                  patient.user.displayName!,
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               DefaultButton(
                 color: Colors.teal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Hero(
-                      tag: 'logoSmartService',
+                      tag: 'logoPatientInfo',
                       child: FaIcon(
-                        FontAwesomeIcons.flask,
+                        FontAwesomeIcons.idCard,
                         color: Colors.white,
                       ),
                     ),
                     Text(
-                      'Atendimento inteligente',
+                      'Minhas Informações',
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -104,14 +98,14 @@ class _AuthenticatedScreenState extends State<AuthenticatedScreen> {
                   ],
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, SmartServiceScreen.id);
+                  Navigator.pushNamed(context, PatientInfoScreen.id);
                 },
               ),
               DefaultButton(
                 color: Colors.teal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Hero(
                       tag: 'logoTimeService',
                       child: FaIcon(
